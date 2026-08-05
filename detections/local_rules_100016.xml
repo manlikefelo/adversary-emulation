@@ -1,0 +1,18 @@
+<!-- Wazuh rule to close the encoded-PowerShell gap found in the emulation run.
+     Add to /var/ossec/etc/rules/local_rules.xml on the manager. Keys on Sysmon
+     Event ID 1 (process creation) for powershell/pwsh with an encoded command.
+     Requires the Sysmon channel to be collected by the agent (see gap-analysis.md,
+     "the telemetry-collection gap"). -->
+<group name="sysmon,windows,adversary_emulation,">
+
+  <rule id="100016" level="12">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image">(?i)\\powershell\.exe$|\\pwsh\.exe$</field>
+    <field name="win.eventdata.commandLine">(?i)\s-e(nc(odedCommand)?|c)?\s</field>
+    <description>T1059.001: Encoded PowerShell command executed ($(win.eventdata.image))</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+</group>

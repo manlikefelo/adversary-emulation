@@ -1,0 +1,36 @@
+title: Encoded PowerShell Command Execution
+id: f1a2b3c4-d5e6-4f70-8a91-0b2c3d4e5f60
+status: experimental
+description: |
+    Detects PowerShell launched with an encoded command (-EncodedCommand / -enc /
+    -e), a very common way to obfuscate malicious PowerShell so the real command
+    isn't visible in the command line. Emerged as a gap in my adversary-emulation
+    run: the Plan B T1059.001 atomic (an encoded whoami) executed on WS01 and
+    produced no alert. Keys on Sysmon Event ID 1 (process creation).
+references:
+    - https://attack.mitre.org/techniques/T1059/001/
+    - https://learn.microsoft.com/sysinternals/downloads/sysmon
+author: Felix Githure
+date: 2026-08-05
+tags:
+    - attack.execution
+    - attack.t1059.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_img:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+    selection_enc:
+        CommandLine|contains:
+            - ' -EncodedCommand '
+            - ' -enc '
+            - ' -e '
+            - ' -ec '
+    condition: selection_img and selection_enc
+falsepositives:
+    - Some legitimate management tooling and installers launch encoded PowerShell;
+      baseline the parent processes and whitelist known-good automation.
+level: high
