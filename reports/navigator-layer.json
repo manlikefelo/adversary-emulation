@@ -1,0 +1,78 @@
+{
+  "name": "Adversary Emulation - Detection Coverage",
+  "versions": {
+    "attack": "14",
+    "navigator": "4.9.1",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "4/8 executed techniques detected. Green = detection fired; red = gap.",
+  "techniques": [
+    {
+      "techniqueID": "T1087.002",
+      "color": "#2ecc71",
+      "comment": "100013",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1558.003",
+      "color": "#2ecc71",
+      "comment": "100010",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1558.004",
+      "color": "#2ecc71",
+      "comment": "100011",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1003.006",
+      "color": "#2ecc71",
+      "comment": "100012",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1033",
+      "color": "#e74c3c",
+      "comment": "no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1082",
+      "color": "#e74c3c",
+      "comment": "no rule for systeminfo.exe process creation",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1016",
+      "color": "#e74c3c",
+      "comment": "no rule for ipconfig/arp recon process creation",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1059.001",
+      "color": "#e74c3c",
+      "comment": "encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live",
+      "enabled": true
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ff6666",
+      "#66b1ff"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "Detected",
+      "color": "#2ecc71"
+    },
+    {
+      "label": "Gap (executed, not detected)",
+      "color": "#e74c3c"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+# Emulation results — the source of truth for the coverage report.
+#
+# executed:  was the technique run against the lab? (this project or cited prior run)
+# detected:  did a Wazuh detection fire on the telemetry?
+# rule:      the Wazuh rule id that caught it (blank if a gap)
+# source:    where the result comes from  (P6-live = this session's live run;
+#            ad-attack-chain = verified firing in the prior red-team project)
+# gap:       short reason it was missed (for undetected techniques)
+#
+# Honesty note: Plan A (AD) techniques were verified firing end-to-end in my
+# ad-attack-chain project (rules 100010-100013, evidence in that repo). In THIS
+# emulation session I ran Plan B live against WS01 (DC01 was powered off to stay
+# within the 16GB RAM budget), and confirmed the Plan B gap directly. I mark Plan A
+# as detected with source=ad-attack-chain rather than claiming a fresh run.
+
+techniques:
+  # --- Plan A: AD credential access (coverage proven in ad-attack-chain) ---
+  - id: T1087.002
+    name: "Account Discovery: Domain"
+    tactic: Discovery
+    plan: A
+    executed: true
+    detected: true
+    rule: "100013"
+    source: ad-attack-chain
+  - id: T1558.003
+    name: Kerberoasting
+    tactic: Credential Access
+    plan: A
+    executed: true
+    detected: true
+    rule: "100010"
+    source: ad-attack-chain
+  - id: T1558.004
+    name: AS-REP Roasting
+    tactic: Credential Access
+    plan: A
+    executed: true
+    detected: true
+    rule: "100011"
+    source: ad-attack-chain
+  - id: T1003.006
+    name: DCSync
+    tactic: Credential Access
+    plan: A
+    executed: true
+    detected: true
+    rule: "100012"
+    source: ad-attack-chain
+
+  # --- Plan B: local discovery / execution (run LIVE this session on WS01) ---
+  - id: T1033
+    name: "System Owner/User Discovery"
+    tactic: Discovery
+    plan: B
+    executed: true
+    detected: false
+    source: P6-live
+    gap: "no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent"
+  - id: T1082
+    name: "System Information Discovery"
+    tactic: Discovery
+    plan: B
+    executed: true
+    detected: false
+    source: P6-live
+    gap: "no rule for systeminfo.exe process creation"
+  - id: T1016
+    name: "System Network Configuration Discovery"
+    tactic: Discovery
+    plan: B
+    executed: true
+    detected: false
+    source: P6-live
+    gap: "no rule for ipconfig/arp recon process creation"
+  - id: T1059.001
+    name: "Command and Scripting Interpreter: PowerShell"
+    tactic: Execution
+    plan: B
+    executed: true
+    detected: false
+    source: P6-live
+    gap: "encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live"

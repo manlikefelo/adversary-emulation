@@ -1,0 +1,24 @@
+Plan B live run — evidence (WS01, 2026-08-05)
+=============================================
+Executed on WS01 (10.10.10.20, domain-joined lab.local) via VBoxManage guestcontrol:
+  T1033  whoami
+  T1082  systeminfo
+  T1016  ipconfig /all ; arp -a
+  T1059.001  powershell -EncodedCommand dwBoAG8AYQBtAGkA  (decodes to: whoami)
+
+Wazuh manager (WAZUH01 10.10.10.50) state at run time:
+  - WS01 agent id 002: ACTIVE
+  - DC01 agent id 001: Disconnected (not booted this phase)
+  - WS01 events archived: 464 (telemetry confirmed flowing agent -> manager)
+  - Alerts fired for the discovery/execution commands: 0
+    (a lone regex match on "arp" was DNS rule 61109 "in-addr.arpa timeout" —
+     unrelated; discounted)
+
+FINDING (the gap): the discovery + encoded-PowerShell activity generated NO alert.
+Two-layer gap:
+  1. No detection rule keyed on process-creation for these techniques.
+  2. WS01's agent is forwarding the Windows Security channel but Sysmon
+     process-creation (EID 1) is not being surfaced as events — so there is a
+     TELEMETRY-COLLECTION gap under the rule gap. Both are documented in
+     gap-analysis.md; the new rule 100016 targets the encoded-PowerShell case
+     and the collection fix (subscribe the Sysmon channel) is called out.
