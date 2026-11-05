@@ -99,6 +99,9 @@ def build_navigator_layer(techniques: list[dict]) -> dict:
             "Green = detection fired; red = gap."
         ),
         "techniques": entries,
+        # Most entries are sub-techniques, which Navigator collapses by default and
+        # so hides their colour. Expand the ones this layer annotates.
+        "layout": {"layout": "side", "expandedSubtechniques": "annotated"},
         "gradient": {"colors": ["#ff6666", "#66b1ff"], "minValue": 0, "maxValue": 100},
         "legendItems": [
             {"label": "Detected", "color": GREEN},

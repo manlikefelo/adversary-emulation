@@ -57,6 +57,10 @@
       "enabled": true
     }
   ],
+  "layout": {
+    "layout": "side",
+    "expandedSubtechniques": "annotated"
+  },
   "gradient": {
     "colors": [
       "#ff6666",
