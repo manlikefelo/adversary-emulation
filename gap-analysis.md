@@ -65,8 +65,8 @@ on WS01) is gated on the collection fix above, booting WS01 + WAZUH01, subscribi
 Sysmon channel, re-running the encoded-PowerShell atomic, and confirming rule 100016
 fires. That closes the loop: **measure → find gap → collect + detect → re-measure.**
 
-## The honest headline
+## Result
 Emulating a real playbook against my own lab didn't just confirm what I detect. It
 found what I *don't*, including a log source I wasn't even collecting. That measure-and-
-improve loop is the whole point of adversary emulation, and it's more valuable than a
+improve loop is the purpose of adversary emulation, and it's more valuable than a
 coverage number that's all green.

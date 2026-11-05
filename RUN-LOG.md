@@ -27,8 +27,8 @@ Kerberoasting / AS-REP / DCSync / domain discovery were **verified firing end-to
 my [ad-attack-chain](https://github.com/manlikefelo/ad-attack-chain) project** (rules
 100010–100013, evidence in that repo). They need DC01 live, which the RAM budget didn't
 allow alongside WS01+WAZUH01 this session, so I record them in `results.yml` with
-`source: ad-attack-chain` rather than claiming a fresh run here: the coverage figure
-stays honest.
+`source: ad-attack-chain` rather than claiming a fresh run here, so the coverage figure
+stays accurate.
 
 ## Coverage result
 **4/8 executed techniques detected = 50%** (see [`reports/coverage-report.md`](reports/coverage-report.md)

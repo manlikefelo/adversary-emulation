@@ -2,10 +2,10 @@
 
 **Systematically run known ATT&CK techniques against my lab with Atomic Red Team, measure which of my detections actually fire, and close the gaps. Coverage is a measured number, not a claim.**
 
-This is the validation layer on top of my detection work. Where [ad-attack-chain](https://github.com/manlikefelo/ad-attack-chain) proved I *can* attack and [detection-engineering](https://github.com/manlikefelo/detection-engineering) proved I *wrote* detections, this repo proves I can **measure and improve detection coverage** against a recognised adversary-emulation framework: the purple-team capability that reads a cut above entry level.
+This is the validation layer on top of my detection work. Where [ad-attack-chain](https://github.com/manlikefelo/ad-attack-chain) proved I *can* attack and [detection-engineering](https://github.com/manlikefelo/detection-engineering) proved I *wrote* detections, this repo proves I can **measure and improve detection coverage** against a recognised adversary-emulation framework.
 
 > **Problem:** "I wrote some detections" is unmeasured. Which techniques do they actually catch, and where am I blind?
-> **Approach:** run structured ATT&CK emulation plans against the lab, record technique → detected yes/no, and close the gaps.
+> **Approach:** run structured ATT&CK emulation plans against the lab, record each technique and whether it was detected, and close the gaps.
 > **Result:** a measured **4/8 = 50%** coverage figure, a real blind spot found (endpoint process activity + a log source I wasn't collecting), and a new detection written to close the highest-value gap.
 
 ---
@@ -25,7 +25,7 @@ flowchart LR
     N -->|re-run| E
 ```
 
-**measure → find gaps → improve → re-measure.** That loop is the whole point.
+**measure → find gaps → improve → re-measure.** I repeat that loop to improve coverage.
 
 ## Coverage result
 
@@ -40,7 +40,7 @@ flowchart LR
 | System Owner/User Discovery | T1033 | No | *(gap)* |
 | System Information Discovery | T1082 | No | *(gap)* |
 | System Network Config Discovery | T1016 | No | *(gap)* |
-| PowerShell (encoded) | T1059.001 | No → new rule 100016 | *(closing)* |
+| PowerShell (encoded) | T1059.001 | No, new rule 100016 written | *(closing)* |
 
 ![ATT&CK Navigator layer with detected techniques in green and gaps in red](evidence/navigator-coverage.png)
 
@@ -54,7 +54,7 @@ Two emulation plans (see [`emulation-plans/`](emulation-plans/)):
 
 Plan B produced **zero detections**: the blind spot I expected. But digging into *why* surfaced a second layer: **the Sysmon process-creation telemetry wasn't even being collected** from the WS01 agent. You can't detect what you don't collect. Both the missing rule and the missing log source are written up in [`gap-analysis.md`](gap-analysis.md), and I closed the highest-value gap, **encoded PowerShell (T1059.001)**, with a new Sigma rule + Wazuh rule `100016`, validated against the Sigma spec and my own [sigmatest](https://github.com/manlikefelo/sigmatest) evaluator.
 
-That self-critical result: *"I emulated a playbook and found holes in my own detections, including a log source I wasn't collecting"*, is the honest, mature outcome adversary emulation is supposed to produce.
+Finding holes in my own detections, including a log source I wasn't collecting, is what adversary emulation is meant to do.
 
 ## Layout
 

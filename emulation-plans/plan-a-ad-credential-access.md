@@ -32,7 +32,7 @@ Account Discovery      (roast svc_sql SPN)               (replicate krbtgt +
 
 ## Success criteria
 - Each technique executes cleanly and produces the expected telemetry on WS01/DC01.
-- For each, I record whether the mapped Wazuh rule fired (→ `results.yml`).
+- For each, I record whether the mapped Wazuh rule fired (in `results.yml`).
 - Any technique that runs but does **not** alert is logged as a gap for Plan-level
   follow-up (see [`../gap-analysis.md`](../gap-analysis.md)).
 

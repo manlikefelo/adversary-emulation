@@ -11,7 +11,7 @@
 ## Target
 WS01: the domain-joined Windows 11 workstation (`10.10.10.20`), which already ships
 **Sysmon + Windows Security** telemetry to the Wazuh manager. That existing visibility is
-the whole point: I attack WS01/DC01 and watch which of my detections fire on WAZUH01.
+needed because I attack WS01/DC01 and watch which of my detections fire on WAZUH01.
 
 ## Install Invoke-Atomic (PowerShell, elevated)
 
