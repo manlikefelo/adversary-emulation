@@ -1,9 +1,9 @@
-# Emulation Plan A — AD credential access & domain dominance
+# Emulation Plan A: AD credential access & domain dominance
 
 **Objective:** emulate the credential-theft path an intrusion actor takes once it has a
 foothold in an Active Directory network, and measure which steps my existing detections
 catch. This plan deliberately mirrors the TTPs of financially-motivated and
-espionage actors who lean on Kerberos abuse and DCSync — e.g. **Wizard Spider / FIN6-style**
+espionage actors who lean on Kerberos abuse and DCSync, e.g. **Wizard Spider / FIN6-style**
 tradecraft, where roasting a service account and then replicating secrets from the DC is
 the standard route to Domain Admin.
 

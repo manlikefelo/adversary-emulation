@@ -1,4 +1,4 @@
-# Emulation results — the source of truth for the coverage report.
+# Emulation results: the source of truth for the coverage report.
 #
 # executed:  was the technique run against the lab? (this project or cited prior run)
 # detected:  did a Wazuh detection fire on the telemetry?

@@ -57,8 +57,8 @@ def build_markdown(techniques: list[dict]) -> str:
         "|-----------|----|--------|:--------:|:--------:|------|-----|",
     ]
     for t in techniques:
-        ex = "✅" if t.get("executed") else "—"
-        det = "✅" if t.get("detected") else ("❌" if t.get("executed") else "—")
+        ex = "Yes" if t.get("executed") else "-"
+        det = "Yes" if t.get("detected") else ("No" if t.get("executed") else "-")
         rule = t.get("rule", "") or ""
         gap = "" if t.get("detected") or not t.get("executed") else t.get("gap", "no detection")
         lines.append(
@@ -70,7 +70,7 @@ def build_markdown(techniques: list[dict]) -> str:
     if gaps:
         lines += ["", "## Gaps found", ""]
         for g in gaps:
-            lines.append(f"- **{g.get('id')} {g.get('name')}** — {g.get('gap','undetected')}")
+            lines.append(f"- **{g.get('id')} {g.get('name')}**: {g.get('gap','undetected')}")
     lines.append("")
     return "\n".join(lines)
 

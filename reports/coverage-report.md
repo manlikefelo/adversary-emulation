@@ -8,18 +8,18 @@ of my Wazuh detections fired on the telemetry it produced.
 
 | Technique | ID | Tactic | Executed | Detected | Rule | Gap |
 |-----------|----|--------|:--------:|:--------:|------|-----|
-| Account Discovery: Domain | `T1087.002` | Discovery | ✅ | ✅ | 100013 |  |
-| Kerberoasting | `T1558.003` | Credential Access | ✅ | ✅ | 100010 |  |
-| AS-REP Roasting | `T1558.004` | Credential Access | ✅ | ✅ | 100011 |  |
-| DCSync | `T1003.006` | Credential Access | ✅ | ✅ | 100012 |  |
-| System Owner/User Discovery | `T1033` | Discovery | ✅ | ❌ |  | no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent |
-| System Information Discovery | `T1082` | Discovery | ✅ | ❌ |  | no rule for systeminfo.exe process creation |
-| System Network Configuration Discovery | `T1016` | Discovery | ✅ | ❌ |  | no rule for ipconfig/arp recon process creation |
-| Command and Scripting Interpreter: PowerShell | `T1059.001` | Execution | ✅ | ❌ |  | encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live |
+| Account Discovery: Domain | `T1087.002` | Discovery | Yes | Yes | 100013 |  |
+| Kerberoasting | `T1558.003` | Credential Access | Yes | Yes | 100010 |  |
+| AS-REP Roasting | `T1558.004` | Credential Access | Yes | Yes | 100011 |  |
+| DCSync | `T1003.006` | Credential Access | Yes | Yes | 100012 |  |
+| System Owner/User Discovery | `T1033` | Discovery | Yes | No |  | no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent |
+| System Information Discovery | `T1082` | Discovery | Yes | No |  | no rule for systeminfo.exe process creation |
+| System Network Configuration Discovery | `T1016` | Discovery | Yes | No |  | no rule for ipconfig/arp recon process creation |
+| Command and Scripting Interpreter: PowerShell | `T1059.001` | Execution | Yes | No |  | encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live |
 
 ## Gaps found
 
-- **T1033 System Owner/User Discovery** — no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent
-- **T1082 System Information Discovery** — no rule for systeminfo.exe process creation
-- **T1016 System Network Configuration Discovery** — no rule for ipconfig/arp recon process creation
-- **T1059.001 Command and Scripting Interpreter: PowerShell** — encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live
+- **T1033 System Owner/User Discovery**: no rule for process-creation; Sysmon EID 1 not surfaced from WS01 agent
+- **T1082 System Information Discovery**: no rule for systeminfo.exe process creation
+- **T1016 System Network Configuration Discovery**: no rule for ipconfig/arp recon process creation
+- **T1059.001 Command and Scripting Interpreter: PowerShell**: encoded PowerShell not detected; new rule 100016 written to close this (see gap-analysis.md), pending telemetry-collection fix to re-validate live

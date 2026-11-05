@@ -1,6 +1,6 @@
-# Setup — Atomic Red Team (Invoke-Atomic) on WS01
+# Setup: Atomic Red Team (Invoke-Atomic) on WS01
 
-> ## ⚠️ SAFETY — read first
+> ## SAFETY, read first
 > Atomic Red Team executes **real** offensive techniques. Run it **only** against
 > systems you own, in an **isolated** environment. This lab is a host-only network
 > (`10.10.10.0/24`) with **no route to the internet or any production system**, on VMs
@@ -9,7 +9,7 @@
 > a run so you can revert.
 
 ## Target
-WS01 — the domain-joined Windows 11 workstation (`10.10.10.20`), which already ships
+WS01: the domain-joined Windows 11 workstation (`10.10.10.20`), which already ships
 **Sysmon + Windows Security** telemetry to the Wazuh manager. That existing visibility is
 the whole point: I attack WS01/DC01 and watch which of my detections fire on WAZUH01.
 
@@ -33,7 +33,7 @@ Import-Module "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1" 
 > 2. Download the `invoke-atomicredteam` + `atomic-red-team` zips on the host and copy
 >    them into the guest with `VBoxManage guestcontrol copyto`, then point
 >    `$PSAtomicRedTeamPath` at the extracted folder. This is the safer option and the one
->    I used — the attack phase never has a route off the lab.
+>    I used: the attack phase never has a route off the lab.
 
 ## Verify
 
@@ -55,6 +55,6 @@ test, expected telemetry, and mapped detection rule.
 
 ## Driving WS01 headless
 This lab is driven from the host with `VBoxManage guestcontrol` (Guest Additions is
-installed), copying a `.ps1` into the guest and running it — the same pattern used
+installed), copying a `.ps1` into the guest and running it: the same pattern used
 across the portfolio. Credentials and the exact driving snippet live in the gitignored
 local session notes, never in this repo.

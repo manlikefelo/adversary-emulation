@@ -1,6 +1,6 @@
-# Setup — Atomic Red Team on a Linux host (UB01)
+# Setup: Atomic Red Team on a Linux host (UB01)
 
-> ⚠️ Same safety rules as the Windows guide — isolated lab only, snapshot first.
+> Same safety rules as the Windows guide, isolated lab only, snapshot first.
 
 Atomic Red Team also covers Linux techniques. UB01 (`10.10.10.30`, Ubuntu + Docker,
 already running the vulnerable containers from my web-pentest project) is the Linux target.

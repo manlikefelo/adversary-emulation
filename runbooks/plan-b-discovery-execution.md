@@ -1,11 +1,11 @@
-# Runbook — Plan B: local discovery & execution (T1033, T1082, T1016, T1059.001)
+# Runbook: Plan B: local discovery & execution (T1033, T1082, T1016, T1059.001)
 
 **Plan:** B · **Tactic:** Discovery / Execution · **Target:** WS01 (local)
-**Detection expected:** none with the current rule set — these are the blind spots.
+**Detection expected:** none with the current rule set. These are the blind spots.
 
 All four rely on **Sysmon Event ID 1 (process creation)** telemetry, which WS01 ships to
 Wazuh. My current rules key on Windows Security events (4768/4769/4662) and web logs, so
-they don't look at process creation — which is exactly why Plan B finds gaps.
+they don't look at process creation, which is exactly why Plan B finds gaps.
 
 ## Atomic tests
 ```powershell
