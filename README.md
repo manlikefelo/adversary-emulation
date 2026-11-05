@@ -42,8 +42,6 @@ flowchart LR
 | System Network Config Discovery | T1016 | ❌ | *(gap)* |
 | PowerShell (encoded) | T1059.001 | ❌ → new rule 100016 | *(closing)* |
 
-_Navigator heat-map screenshot to add: `evidence/navigator-coverage.png`._
-
 ## What I actually ran
 
 Two emulation plans (see [`emulation-plans/`](emulation-plans/)):
