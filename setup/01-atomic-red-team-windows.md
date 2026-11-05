@@ -56,5 +56,4 @@ test, expected telemetry, and mapped detection rule.
 ## Driving WS01 headless
 This lab is driven from the host with `VBoxManage guestcontrol` (Guest Additions is
 installed), copying a `.ps1` into the guest and running it: the same pattern used
-across the portfolio. Credentials and the exact driving snippet live in the gitignored
-local session notes, never in this repo.
+across the portfolio. Credentials are never stored in this repo.
